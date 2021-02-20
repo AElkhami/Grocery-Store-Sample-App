@@ -24,13 +24,11 @@ class ProductListActivityTest{
     @get: Rule
     val activityRule = ActivityScenarioRule(ProductListActivity::class.java)
 
-
-
     /**
      * Parent RecyclerView come to the view on screen launch
      */
     @Test
-    fun test_parentRecyclerView_is_displayed(){
+    fun test_parentRecyclerView_isDisplayed(){
         onView(withId(R.id.categoryRecyclerView))
             .check(matches(isDisplayed()))
     }
@@ -39,8 +37,10 @@ class ProductListActivityTest{
      * Child RecyclerView come to the view on screen launch
      */
     @Test
-    fun test_childRecyclerView_is_displayed(){
+    fun test_childRecyclerView_and_categoryName_areDisplayed(){
         onView(withRecyclerView(R.id.categoryRecyclerView).atPositionOnView(0, R.id.productRecyclerView))
+            .check(matches(isDisplayed()))
+        onView(withRecyclerView(R.id.categoryRecyclerView).atPositionOnView(0, R.id.categoryTextView))
             .check(matches(isDisplayed()))
     }
 
@@ -51,7 +51,6 @@ class ProductListActivityTest{
     @Test
     fun test_categoryName_isDisplayed_and_matchData(){
         onView(withRecyclerView(R.id.categoryRecyclerView).atPositionOnView(0, R.id.categoryTextView))
-            .check(matches(isDisplayed()))
             .check(matches(withText(recyclerViewTestingStubData()[0].name)))
     }
 
@@ -61,15 +60,26 @@ class ProductListActivityTest{
     @Test
     fun test_productName_isDisplayed_and_matchData(){
         onView(withRecyclerView(R.id.productRecyclerView).atPositionOnView(0, R.id.productItemNameTextView))
-            .check(matches(isDisplayed()))
             .check(matches(withText(recyclerViewTestingStubData()[0].products[0].name)))
     }
 
     /**
-     * Clicking on child RecyclerView item
+     * Check that product name and image come to the view on screen launch
      */
     @Test
-    fun test_selectItemOnChildRecyclerView_openDetailsScreen(){
+    fun test_productName_and_productImage_areDisplayed(){
+        onView(withRecyclerView(R.id.productRecyclerView).atPositionOnView(0, R.id.productItemNameTextView))
+            .check(matches(isDisplayed()))
+
+        onView(withRecyclerView(R.id.productRecyclerView).atPositionOnView(0, R.id.productItemImageView))
+            .check(matches(isDisplayed()))
+    }
+
+    /**
+     * Clicking on child RecyclerView item and verify the data
+     */
+    @Test
+    fun test_selectItemOnChildRecyclerView_openDetailsScreen_matchProductName(){
 
         onView(withId(R.id.productRecyclerView))
             .perform(actionOnItemAtPosition<ProductRecyclerAdapter.ProductViewHolder>(0,
