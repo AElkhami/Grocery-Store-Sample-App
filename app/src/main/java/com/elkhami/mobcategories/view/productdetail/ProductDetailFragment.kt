@@ -1,4 +1,4 @@
-package com.elkhami.mobcategories.view.productlist
+package com.elkhami.mobcategories.view.productdetail
 
 import android.os.Bundle
 import android.view.View
