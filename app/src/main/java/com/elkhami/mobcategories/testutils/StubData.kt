@@ -1,8 +1,8 @@
 package com.elkhami.mobcategories.testutils
 
-import com.elkhami.productcatalogue.data.model.Category
-import com.elkhami.productcatalogue.data.model.Product
-import com.elkhami.productcatalogue.data.model.SalePrice
+import com.elkhami.mobcategories.model.data.Category
+import com.elkhami.mobcategories.model.data.Product
+import com.elkhami.mobcategories.model.data.SalePrice
 
 /**
  * Created by A.Elkhami on 20,February,2021

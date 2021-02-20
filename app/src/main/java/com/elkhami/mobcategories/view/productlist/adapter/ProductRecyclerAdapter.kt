@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elkhami.mobcategories.R
-import com.elkhami.productcatalogue.data.model.Product
+import com.elkhami.mobcategories.model.data.Product
 
 /**
  * Created by A.Elkhami on 20,February,2021
  */
-class ProductRecyclerAdapter(private val productList: List<Product>) :
+class ProductRecyclerAdapter(private val productList: List<Product>,
+                             private val clickListener: ProductRecyclerAdapterCallback) :
     RecyclerView.Adapter<ProductRecyclerAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,6 +40,10 @@ class ProductRecyclerAdapter(private val productList: List<Product>) :
             .into(holder.productImageView)
 
         holder.productTextView.text = productItem.name
+
+        holder.itemView.setOnClickListener {
+            clickListener.onProductClick(productItem)
+        }
 
     }
 

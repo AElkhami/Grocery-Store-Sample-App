@@ -3,18 +3,19 @@ package com.elkhami.mobcategories.view.productlist.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elkhami.mobcategories.R
-import com.elkhami.productcatalogue.data.model.Category
+import com.elkhami.mobcategories.model.data.Category
+import com.elkhami.mobcategories.model.data.Product
 
 /**
  * Created by A.Elkhami on 20,February,2021
  */
-class CategoryRecyclerAdapter(private val categoryList: List<Category>) :
-    RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder>() {
+class CategoryRecyclerAdapter(private val categoryList: List<Category>,
+                              private val clickListener: CategoryRecyclerAdapterCallback) :
+    RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder>(), ProductRecyclerAdapterCallback {
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
@@ -38,7 +39,8 @@ class CategoryRecyclerAdapter(private val categoryList: List<Category>) :
                 RecyclerView.HORIZONTAL,
                 false)
 
-            adapter = ProductRecyclerAdapter(categoryItem.products)
+            adapter = ProductRecyclerAdapter(categoryItem.products,
+                this@CategoryRecyclerAdapter)
 
             setRecycledViewPool(RecyclerView.RecycledViewPool())
         }
@@ -47,5 +49,9 @@ class CategoryRecyclerAdapter(private val categoryList: List<Category>) :
 
     override fun getItemCount(): Int {
         return categoryList.size
+    }
+
+    override fun onProductClick(productItem: Product) {
+        clickListener.onProductClickFromCategory(productItem)
     }
 }

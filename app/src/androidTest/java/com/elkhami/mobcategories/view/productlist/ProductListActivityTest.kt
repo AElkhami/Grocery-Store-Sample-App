@@ -87,7 +87,7 @@ class ProductListActivityTest{
             ))
 
         onView(withId(R.id.productNameTextView))
-            .check(matches(withText(recyclerViewTestingStubData()[0].name)))
+            .check(matches(withText(recyclerViewTestingStubData()[0].products[0].name)))
     }
 
 }

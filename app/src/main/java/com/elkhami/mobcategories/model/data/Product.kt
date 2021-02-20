@@ -1,5 +1,9 @@
-package com.elkhami.productcatalogue.data.model
+package com.elkhami.mobcategories.model.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Product(
     val categoryId: String,
     val description: String,
@@ -7,4 +11,4 @@ data class Product(
     val name: String,
     val salePrice: SalePrice,
     val url: String
-)
+): Parcelable
