@@ -28,7 +28,11 @@ class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
-        screenTitle.text = getString(R.string.products)
+        setSupportActionBar(appToolBar)
+
+        supportActionBar?.apply {
+            title = getString(R.string.products)
+        }
 
         appContainer = (application as MobApplication).appContainer
 

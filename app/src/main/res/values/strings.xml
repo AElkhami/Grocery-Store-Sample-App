@@ -6,6 +6,6 @@
     <string name="amount_with_currency">%s %s</string>
     <string name="refresh">Refresh</string>
     <string name="price">Price</string>
-    <string name="something_went_wrong">Something went wrong,\n please check your internet and try again later.</string>
+    <string name="something_went_wrong">Something went wrong,\nplease check your internet and try again later.</string>
     <string name="splash_icon">Splash Icon</string>
 </resources>

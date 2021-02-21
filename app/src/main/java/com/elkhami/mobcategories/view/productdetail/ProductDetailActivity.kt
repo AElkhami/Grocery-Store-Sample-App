@@ -6,7 +6,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.model.data.Product
-import com.elkhami.mobcategories.utils.Constants
 import com.elkhami.mobcategories.utils.Constants.Companion.productItemExtra
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.app_toolbar.*
@@ -21,11 +20,22 @@ class ProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
+        setSupportActionBar(appToolBar)
+
+        initUi()
+    }
+
+    private fun initUi() {
         val product = intent.extras?.getParcelable<Product>(productItemExtra)
 
         product?.let {
 
-            screenTitle.text = getString(R.string.details_screen_title, it.name)
+            supportActionBar?.apply {
+                title = getString(R.string.details_screen_title, it.name)
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+                setHomeAsUpIndicator(R.drawable.ic_toolbar_back)
+            }
 
             Glide
                 .with(this)
@@ -46,7 +56,5 @@ class ProductDetailActivity : AppCompatActivity() {
                 it.salePrice.currency
             )
         }
-
-
     }
 }
