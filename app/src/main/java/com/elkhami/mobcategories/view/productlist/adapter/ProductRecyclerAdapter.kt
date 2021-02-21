@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.model.data.Product
-import com.elkhami.mobcategories.utils.Constants.Companion.BASE_URL
 
 /**
  * Created by A.Elkhami on 20,February,2021

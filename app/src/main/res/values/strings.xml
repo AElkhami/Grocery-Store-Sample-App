@@ -2,10 +2,11 @@
     <string name="app_name">The Grocery Store</string>
     <string name="product_image">Product Image</string>
     <string name="details_screen_title">%s Details</string>
+    <string name="app_version">version: %s</string>
     <string name="products">Our Products</string>
     <string name="amount_with_currency">%s %s</string>
     <string name="refresh">Refresh</string>
     <string name="price">Price</string>
-    <string name="something_went_wrong">Something went wrong,\nplease check your internet and try again later.</string>
+    <string name="something_went_wrong">Something went wrong,\nPlease check your internet connection then try again.</string>
     <string name="splash_icon">Splash Icon</string>
 </resources>
