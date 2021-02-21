@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/screen_background">
 
     <ImageView
         android:id="@+id/productImageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/product_image"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +23,7 @@
     <TextView
         android:id="@+id/productNameTextView"
         style="@style/TitleTextViewStyle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -33,17 +35,28 @@
         tools:text="Product Name" />
 
     <TextView
+        android:id="@+id/productPriceLable"
+        style="@style/NormalTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="end"
+        android:text="@string/price"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/productPriceTextView"
+        app:layout_constraintStart_toStartOf="@+id/productNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+    <TextView
         android:id="@+id/productPriceTextView"
         style="@style/NormalTextViewStyle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="@+id/productNameTextView"
+        app:layout_constraintStart_toEndOf="@+id/productPriceLable"
         app:layout_constraintTop_toBottomOf="@+id/productNameTextView"
         tools:text="Product Price" />
 

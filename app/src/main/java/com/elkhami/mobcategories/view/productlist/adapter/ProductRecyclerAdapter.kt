@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.model.data.Product
+import com.elkhami.mobcategories.utils.Constants.Companion.BASE_URL
 
 /**
  * Created by A.Elkhami on 20,February,2021
@@ -33,9 +34,12 @@ class ProductRecyclerAdapter(private val productList: List<Product>,
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productItem = productList[position]
 
+        val url = BASE_URL.replaceAfter("com",productItem.url,"//")
+
         Glide
             .with(holder.itemView)
-            .load(productItem.url)
+            .load(url)
+            .circleCrop()
             .placeholder(R.drawable.ic_food_and_drink)
             .into(holder.productImageView)
 

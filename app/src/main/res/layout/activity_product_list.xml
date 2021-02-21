@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/categoryListContainer"
+    android:background="@color/screen_background"
     tools:context=".view.productlist.ProductListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,5 +30,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/refreshButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_refresh"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

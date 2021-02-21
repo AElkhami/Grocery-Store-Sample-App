@@ -2,4 +2,7 @@
     <string name="app_name">Mob Categories</string>
     <string name="product_image">Product Image</string>
     <string name="details_screen_title">%s Details</string>
+    <string name="amount_with_currency">%s %s</string>
+    <string name="refresh">Refresh</string>
+    <string name="price">Price</string>
 </resources>
