@@ -13,9 +13,12 @@ import com.elkhami.mobcategories.model.data.Product
 /**
  * Created by A.Elkhami on 20,February,2021
  */
-class CategoryRecyclerAdapter(private val categoryList: List<Category>,
-                              private val clickListener: CategoryRecyclerAdapterCallback) :
-    RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder>(), ProductRecyclerAdapterCallback {
+class CategoryRecyclerAdapter(
+    private val categoryList: List<Category>,
+    private val clickListener: CategoryRecyclerAdapterCallback
+) :
+    RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder>(),
+    ProductRecyclerAdapterCallback {
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
@@ -34,13 +37,17 @@ class CategoryRecyclerAdapter(private val categoryList: List<Category>,
         val categoryItem = categoryList[position]
 
         holder.categoryTextView.text = categoryItem.name
-        holder.categoryRecyclerView.apply{
-            layoutManager = LinearLayoutManager(holder.categoryRecyclerView.context,
+        holder.categoryRecyclerView.apply {
+            layoutManager = LinearLayoutManager(
+                holder.categoryRecyclerView.context,
                 RecyclerView.HORIZONTAL,
-                false)
+                false
+            )
 
-            adapter = ProductRecyclerAdapter(categoryItem.products,
-                this@CategoryRecyclerAdapter)
+            adapter = ProductRecyclerAdapter(
+                categoryItem.products,
+                this@CategoryRecyclerAdapter
+            )
 
             setRecycledViewPool(RecyclerView.RecycledViewPool())
         }

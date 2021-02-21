@@ -2,7 +2,6 @@ package com.elkhami.mobcategories.model.network
 
 import com.elkhami.mobcategories.model.data.Category
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 
 /**

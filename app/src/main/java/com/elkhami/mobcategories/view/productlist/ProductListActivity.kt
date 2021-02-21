@@ -7,24 +7,28 @@ import androidx.appcompat.app.AppCompatActivity
 import com.elkhami.mobcategories.MobApplication
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.di.AppContainer
-import com.elkhami.mobcategories.view.productdetail.ProductDetailActivity
-import com.elkhami.mobcategories.view.productlist.adapter.CategoryRecyclerAdapter
-import com.elkhami.mobcategories.view.productlist.adapter.CategoryRecyclerAdapterCallback
 import com.elkhami.mobcategories.model.data.Category
 import com.elkhami.mobcategories.model.data.Product
 import com.elkhami.mobcategories.presenter.productlist.ProductListPresenter
 import com.elkhami.mobcategories.utils.Constants.Companion.productItemExtra
+import com.elkhami.mobcategories.view.productdetail.ProductDetailActivity
+import com.elkhami.mobcategories.view.productlist.adapter.CategoryRecyclerAdapter
+import com.elkhami.mobcategories.view.productlist.adapter.CategoryRecyclerAdapterCallback
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_product_list.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback, ProductListActivityListener {
+class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback,
+    ProductListActivityListener {
 
-    private lateinit var presenter : ProductListPresenter
+    private lateinit var presenter: ProductListPresenter
     private lateinit var appContainer: AppContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
+
+        screenTitle.text = getString(R.string.products)
 
         appContainer = (application as MobApplication).appContainer
 
@@ -36,11 +40,11 @@ class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback
 
     }
 
-    private fun setUpPresenter(){
+    private fun setUpPresenter() {
         presenter = ProductListPresenter(this, appContainer.retrofitInstance)
     }
 
-    private fun setUpClickListener(){
+    private fun setUpClickListener() {
         refreshButton.setOnClickListener {
             presenter.refreshCategorisedProducts()
         }
@@ -63,8 +67,12 @@ class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback
         setUpRecyclerView(categoryList)
     }
 
-    override fun showError(error: String) {
-        Snackbar.make(categoryListContainer, error, Snackbar.LENGTH_LONG).show()
+    override fun showError() {
+        Snackbar.make(
+            categoryListContainer,
+            getString(R.string.something_went_wrong),
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     override fun startLoading() {
@@ -88,5 +96,7 @@ class ProductListActivity : AppCompatActivity(), CategoryRecyclerAdapterCallback
         presenter.onDestroy()
     }
 
-
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 }

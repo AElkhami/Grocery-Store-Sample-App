@@ -3,17 +3,19 @@ package com.elkhami.mobcategories.view.productdetail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.model.data.Product
 import com.elkhami.mobcategories.utils.Constants
 import com.elkhami.mobcategories.utils.Constants.Companion.productItemExtra
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
 
 /**
  * Created by A.Elkhami on 20,February,2021
  */
-class ProductDetailActivity: AppCompatActivity() {
+class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +25,17 @@ class ProductDetailActivity: AppCompatActivity() {
 
         product?.let {
 
-            title = getString(R.string.details_screen_title, it.name)
-
-            val url = Constants.BASE_URL.replaceAfter("com", it.url, "//")
+            screenTitle.text = getString(R.string.details_screen_title, it.name)
 
             Glide
                 .with(this)
-                .load(url)
+                .load(it.url)
+                .placeholder(R.drawable.ic_placeholder)
                 .circleCrop()
-                .placeholder(R.drawable.ic_food_and_drink)
+                .transition(
+                    DrawableTransitionOptions()
+                        .crossFade()
+                )
                 .into(productImageView)
 
             productNameTextView.text = it.name

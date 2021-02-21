@@ -7,8 +7,8 @@ import com.elkhami.mobcategories.model.data.Category
  */
 interface ProductListActivityListener {
 
-    fun onCategorisedProductsReceived(categoryList : List<Category>)
-    fun showError(error: String)
+    fun onCategorisedProductsReceived(categoryList: List<Category>)
+    fun showError()
 
     fun startLoading()
     fun finishLoading()

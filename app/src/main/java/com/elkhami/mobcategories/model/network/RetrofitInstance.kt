@@ -12,30 +12,30 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class RetrofitInstance {
 
-        private val retrofit by lazy {
-            val interceptor = HttpLoggingInterceptor()
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    private val retrofit by lazy {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-            val okHttpClient = OkHttpClient
-                .Builder()
-                .addInterceptor(interceptor)
-                .build()
+        val okHttpClient = OkHttpClient
+            .Builder()
+            .addInterceptor(interceptor)
+            .build()
 
-            val gson = GsonBuilder()
-                .setLenient()
-                .create()
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
 
-            Retrofit
-                .Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(okHttpClient)
-                .build()
+        Retrofit
+            .Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
 
-        }
+    }
 
-        val getApiService: ApiService by lazy {
-            retrofit.create(ApiService::class.java)
-        }
+    val getApiService: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
+    }
 
 }

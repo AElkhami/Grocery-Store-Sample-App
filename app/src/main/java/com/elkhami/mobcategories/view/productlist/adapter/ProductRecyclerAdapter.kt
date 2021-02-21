@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.elkhami.mobcategories.R
 import com.elkhami.mobcategories.model.data.Product
 import com.elkhami.mobcategories.utils.Constants.Companion.BASE_URL
@@ -14,8 +15,10 @@ import com.elkhami.mobcategories.utils.Constants.Companion.BASE_URL
 /**
  * Created by A.Elkhami on 20,February,2021
  */
-class ProductRecyclerAdapter(private val productList: List<Product>,
-                             private val clickListener: ProductRecyclerAdapterCallback) :
+class ProductRecyclerAdapter(
+    private val productList: List<Product>,
+    private val clickListener: ProductRecyclerAdapterCallback
+) :
     RecyclerView.Adapter<ProductRecyclerAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,13 +37,15 @@ class ProductRecyclerAdapter(private val productList: List<Product>,
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productItem = productList[position]
 
-        val url = BASE_URL.replaceAfter("com",productItem.url,"//")
-
         Glide
             .with(holder.itemView)
-            .load(url)
+            .load(productItem.url)
+            .placeholder(R.drawable.ic_placeholder)
             .circleCrop()
-            .placeholder(R.drawable.ic_food_and_drink)
+            .transition(
+                DrawableTransitionOptions()
+                    .crossFade()
+            )
             .into(holder.productImageView)
 
         holder.productTextView.text = productItem.name

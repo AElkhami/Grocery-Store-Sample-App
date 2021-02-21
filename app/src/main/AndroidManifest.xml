@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.elkhami.mobcategories">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MobApplication"
@@ -14,18 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobCategories"
         android:usesCleartextTraffic="true"
-
         tools:ignore="AllowBackup">
-        <activity android:name=".view.productlist.ProductListActivity"
-            android:launchMode="singleTop">
+        <activity android:name=".view.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.productdetail.ProductDetailActivity"
-            android:parentActivityName=".view.productlist.ProductListActivity"/>
+        <activity
+            android:name=".view.productlist.ProductListActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".view.productdetail.ProductDetailActivity"
+            android:parentActivityName=".view.productlist.ProductListActivity" />
     </application>
 
 </manifest>

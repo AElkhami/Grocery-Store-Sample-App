@@ -1,4 +1,4 @@
-package com.elkhami.mobcategories.model.productlist
+package com.elkhami.mobcategories.model.request.productlist
 
 import com.elkhami.mobcategories.model.data.Category
 

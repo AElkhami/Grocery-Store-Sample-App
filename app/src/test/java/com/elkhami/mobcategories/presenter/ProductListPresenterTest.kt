@@ -3,8 +3,8 @@ package com.elkhami.mobcategories.presenter
 import com.elkhami.mobcategories.di.AppContainer
 import com.elkhami.mobcategories.model.data.Category
 import com.elkhami.mobcategories.presenter.productlist.ProductListPresenter
+import com.elkhami.mobcategories.testutils.recyclerViewTestingStubData
 import com.elkhami.mobcategories.view.productlist.ProductListActivityListener
-import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
@@ -18,19 +18,24 @@ import org.mockito.junit.MockitoJUnit
  */
 class ProductListPresenterTest {
 
-    @JvmField @Rule
+    @JvmField
+    @Rule
     var mockitoRule = MockitoJUnit.rule()!!
 
-    @Mock private var viewListenerMock: ProductListActivityListener? = null
-    @Mock private lateinit var appContainer: AppContainer
-    @Mock private lateinit var categoryList: List<Category>
-    @Mock private lateinit var throwable: Throwable
+    @Mock
+    private var viewListenerMock: ProductListActivityListener? = null
+    @Mock
+    private lateinit var appContainer: AppContainer
+    @Mock
+    private lateinit var throwable: Throwable
 
     private lateinit var presenter: ProductListPresenter
+    private lateinit var categoryList: List<Category>
 
     @Before
     fun setUp() {
         presenter = ProductListPresenter(viewListenerMock, appContainer.retrofitInstance)
+        categoryList = recyclerViewTestingStubData()
     }
 
     @Test
@@ -49,13 +54,21 @@ class ProductListPresenterTest {
     fun test_onResponseFinished() {
         presenter.onResponseFinished(categoryList)
         then(viewListenerMock).should()?.finishLoading()
-        then(viewListenerMock).should()?.onCategorisedProductsReceived(categoryList)
+    }
+
+    @Test
+    fun test_provideDataToView() {
+        val categoryListWithImageUrl = presenter.appendImageUrlToResponse(categoryList)
+
+        presenter.provideDataToView(categoryListWithImageUrl)
+
+        then(viewListenerMock).should()?.onCategorisedProductsReceived(categoryListWithImageUrl)
     }
 
     @Test
     fun test_onResponseFailure() {
         presenter.onResponseFailure(throwable)
-        then(viewListenerMock).should()?.showError(throwable.message.toString())
+        then(viewListenerMock).should()?.showError()
     }
 
     @Test

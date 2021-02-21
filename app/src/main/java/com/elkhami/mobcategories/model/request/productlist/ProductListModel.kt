@@ -1,4 +1,4 @@
-package com.elkhami.mobcategories.model.productlist
+package com.elkhami.mobcategories.model.request.productlist
 
 import com.elkhami.mobcategories.model.data.Category
 import com.elkhami.mobcategories.model.network.RetrofitInstance
@@ -9,14 +9,14 @@ import retrofit2.Response
 /**
  * Created by A.Elkhami on 21,February,2021
  */
-class ProductListModel(retrofitInstance: RetrofitInstance?): ProductListModelListener {
+class ProductListModel(retrofitInstance: RetrofitInstance?) : ProductListModelListener {
 
     private val response = retrofitInstance
         ?.getApiService
         ?.requestProductCatalogue()
 
     override fun requestApiCallForProductList(onFinishedListener: ProductListModelListener.OnResponseListener) {
-        response?.enqueue(object : Callback<List<Category>> {
+        response?.clone()?.enqueue(object : Callback<List<Category>> {
             override fun onResponse(
                 call: Call<List<Category>>,
                 response: Response<List<Category>>
